@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Project</title>
+    <!-- Link To Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- Link To CSS -->
+    <link rel="stylesheet" href="CSS/add-project.css" />
+
+    <!-- Box Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid ms-4 me-4">
+        <a class="navbar-brand" href="#"
+          ><i class="bx bxs-leaf" style="color: #83b735; font-size: 24px"></i
+        ></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link text-navbar"
+                aria-current="page"
+                href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-navbar active" href="#">My Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-navbar" href="testimonials.html"
+                >Testimonials</a
+              >
+            </li>
+          </ul>
+          <a
+            href="contact.html"
+            class="text-decoration-none text-white border border-white rounded p-2 contact-nav"
+            >Contact Me</a
+          >
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Add Project Start -->
+    <div
+      class="container-fluids d-flex align-items-center justify-content-center"
+    >
+      <div class="container-form">
+        <h2 class="mb-4 text-center" style="margin-top: 80px">
+          Add My <span style="color: #83b735">Project</span>
+        </h2>
+
+        <!-- Form Add Project -->
+        <form style="width: 500px" onsubmit="projectCard(event)">
+          <div class="mb-3">
+            <label for="input-name" class="form-label">Project Name</label>
+            <input type="text" class="form-control" id="input-name" />
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <div class="mb-3">
+              <label for="input-startdate" class="form-label">Start Date</label>
+              <input type="date" class="form-control" id="input-startdate" />
+            </div>
+            <div class="mb-3">
+              <label for="input-enddate" class="form-label">End Date</label>
+              <input type="date" class="form-control" id="input-enddate" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="input-description" class="form-label"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              name="input-description"
+              id="input-description"
+              placeholder="Write your project description here..."
+            ></textarea>
+          </div>
+
+          <div class="checkbox-group d-flex justify-content-between">
+            <div>
+              <div class="mb-3">
+                <input type="checkbox" id="javascript" class="multi-input" />
+                <label for="javascript" class="form-label">Javascript</label>
+              </div>
+              <div class="mb-3">
+                <input type="checkbox" id="react-js" class="multi-input" />
+                <label for="reactjs" class="form-label">React JS</label>
+              </div>
+            </div>
+            <div>
+              <div class="mb-3">
+                <input type="checkbox" id="node-js" class="multi-input" />
+                <label for="nodejs" class="form-label">Node JS</label>
+              </div>
+              <div class="mb-3">
+                <input type="checkbox" id="css3" class="multi-input" />
+                <label for="css3" class="form-label">CSS 3</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="input-image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" id="input-image" required />
+          </div>
+
+          <button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    <!-- Add Project End -->
+
+    <!-- My Project Start -->
+    <div class="container">
+      <h2 class="fw-bold text-center" style="margin: 50px auto">
+        <span style="color: #83b735">My</span> Projects
+      </h2>
+
+      <div class="list-project" id="contents">
+        <!-- Project 1 -->
+        <div class="list-project-detail">
+          <div class="card" style="width: 18rem">
+            <img
+              src="assets/images/post-1.jpg"
+              class="card-img-top"
+              alt="project-image"
+              style="object-fit: cover; height: 190px"
+            />
+            <div class="card-body">
+              <a
+                href="detail-project.html"
+                style="
+                  font-size: 22px;
+                  font-weight: 550;
+                  text-decoration: none;
+                  color: #000;
+                "
+                >Mobile Apps 2023</a
+              >
+
+              <p style="margin: 0">2 Januari 2023 | Seeus</p>
+              <p
+                style="
+                  margin: 0;
+                  margin-bottom: 10px;
+                  font-size: 12px;
+                  color: gray;
+                "
+              >
+                A month ago
+              </p>
+              <p class="card-text" style="font-size: 14px">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="card-skill">
+                <i class="bx bxl-html5 mb-3" style="font-size: 32px"></i>
+              </div>
+              <div class="card-button d-flex justify-content-between">
+                <a
+                  href="#"
+                  class="btn card-btn"
+                  style="flex: 50%; margin-right: 10px; font-size: 16px"
+                  >Edit</a
+                >
+                <a href="#" class="btn card-btn" style="flex: 50%">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <!-- <div class="list-project-detail">
+          <div class="card" style="width: 18rem">
+            <img
+              src="assets/images/post-2.jpg"
+              class="card-img-top"
+              alt="project-image"
+              style="object-fit: cover; height: 190px"
+            />
+            <div class="card-body">
+              <a
+                href="detail-project.html"
+                style="
+                  font-size: 22px;
+                  font-weight: 550;
+                  text-decoration: none;
+                  color: #000;
+                "
+                >Mobile Apps 2023</a
+              >
+              <p style="margin: 0">2 Januari 2023 | Seeus</p>
+              <p
+                style="
+                  margin: 0;
+                  margin-bottom: 10px;
+                  font-size: 12px;
+                  color: gray;
+                "
+              >
+                A month ago
+              </p>
+              <p class="card-text" style="font-size: 14px">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="card-skill">
+                <i class="bx bxl-html5 mb-3" style="font-size: 32px"></i>
+              </div>
+              <div class="card-button d-flex justify-content-between">
+                <a
+                  href="#"
+                  class="btn card-btn"
+                  style="flex: 50%; margin-right: 10px"
+                  >Edit</a
+                >
+                <a href="#" class="btn card-btn" style="flex: 50%">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Project 3 -->
+        <!-- <div class="list-project-detail">
+          <div class="card" style="width: 18rem">
+            <img
+              src="assets/images/post-4.jpg"
+              class="card-img-top"
+              alt="project-image"
+              style="object-fit: cover; height: 190px"
+            />
+            <div class="card-body">
+              <a
+                href="detail-project.html"
+                style="
+                  font-size: 22px;
+                  font-weight: 550;
+                  text-decoration: none;
+                  color: #000;
+                "
+                >Mobile Apps 2023</a
+              >
+              <p style="margin: 0">2 Januari 2023 | Seeus</p>
+              <p
+                style="
+                  margin: 0;
+                  margin-bottom: 10px;
+                  font-size: 12px;
+                  color: gray;
+                "
+              >
+                A month ago
+              </p>
+              <p class="card-text" style="font-size: 14px">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <div class="card-skill">
+                <i class="bx bxl-html5 mb-3" style="font-size: 32px"></i>
+              </div>
+              <div class="card-button d-flex justify-content-between">
+                <a
+                  href="#"
+                  class="btn card-btn"
+                  style="flex: 50%; margin-right: 10px"
+                  >Edit</a
+                >
+                <a href="#" class="btn card-btn" style="flex: 50%">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <!-- My Project End -->
+
+    <!-- Footer Start -->
+    <footer class="copyright">
+      <p>&#169; Seeus | All Right Reserved.</p>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Script To JS -->
+    <script src="JS/projects.js"></script>
+
+    <!-- Script Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

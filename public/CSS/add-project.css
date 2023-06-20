@@ -1,0 +1,67 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Navbar */
+.text-navbar {
+  color: #000;
+}
+
+.text-navbar:hover {
+  /* color: orangered; */
+  color: #83b735;
+}
+
+.active {
+  font-weight: 600;
+}
+
+.contact-nav {
+  background-color: #99cc4c;
+}
+
+.contact-nav:hover {
+  background-color: #83b735;
+}
+
+.container-fluids {
+  height: 92vh;
+}
+
+/* Project */
+
+.card-btn {
+  background-color: #99cc4c;
+  color: #fff !important;
+}
+
+.card-btn:hover {
+  background-color: #83b735;
+}
+
+.list-project {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, auto));
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 5%;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  padding: 15px;
+  text-align: center;
+  background-color: #0e5c6a;
+  justify-content: center;
+}
+
+footer p {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 0;
+}
