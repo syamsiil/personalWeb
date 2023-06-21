@@ -14,7 +14,7 @@
     />
 
     <!-- Link To CSS -->
-    <link rel="stylesheet" href="public/CSS/login-register.css" />
+    <link rel="stylesheet" href="/public/CSS/login-register.css" />
 
     <!-- Box Icons -->
     <link
@@ -51,18 +51,18 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text-navbar active" href="projects"
+              <a class="nav-link text-navbar active" href="/projects"
                 >My Project</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text-navbar" href="testimonials"
+              <a class="nav-link text-navbar" href="/testimonials"
                 >Testimonials</a
               >
             </li>
           </ul>
           <a
-            href="contact"
+            href="/contact"
             class="text-decoration-none text-white border border-white rounded p-2 contact-nav"
             >Contact Me</a
           >
@@ -73,17 +73,23 @@
 
     <!-- Detail Project Start -->
     <div class="container">
-      <h2
+      <!-- <h2
         class="text-center fw-bold"
         style="margin-bottom: 50px; margin-top: 50px"
       >
         <span style="color: #83b735">Seeus</span> Web App
+      </h2> -->
+      <h2
+        class="text-center fw-bold"
+        style="margin-bottom: 50px; margin-top: 50px"
+      >
+        {{.Project.ProjectName}}
       </h2>
       <div class="content d-flex">
         <div class="about">
           <div class="about-image" style="width: 600px; margin-right: 50px">
             <img
-              src="public/images/bghome1.jpg"
+              src="/public/images/bghome1.jpg"
               alt="about-image "
               style="width: 100%"
             />
@@ -99,7 +105,7 @@
                 style="font-size: 21px"
               ></i>
               <p style="margin-bottom: 12px !important">
-                12 Jan 2023 - 11 Feb 2023
+                {{.Project.PostDate}}
               </p>
             </div>
             <div class="duration-month d-flex">
@@ -107,7 +113,7 @@
                 class="bx bx-time me-2 align-items-center"
                 style="font-size: 21px"
               ></i>
-              <p style="margin: 0 !important">1 Month</p>
+              <p style="margin: 0 !important">{{.Project.DistanceTime}}</p>
             </div>
           </div>
 
@@ -138,43 +144,7 @@
       </div>
 
       <div class="about-description" style="margin-top: 50px">
-        <p style="text-align: justify">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium
-          dignissimos consequatur quisquam quaerat natus fugit aspernatur
-          mollitia magnam accusamus possimus quo recusandae enim harum ducimus
-          accusantium sunt illum nulla blanditiis, cupiditate in tempora tempore
-          distinctio a totam. Labore mollitia nam sed voluptates similique alias
-          deleniti cumque accusantium cum itaque temporibus eius animi illo,
-          quibusdam laudantium fugiat qui provident reiciendis numquam quos est
-          rerum unde pariatur earum! Repellendus placeat facilis praesentium
-          perspiciatis quidem explicabo eveniet mollitia ipsam vero delectus
-          dolores doloribus, eaque itaque perferendis, recusandae maxime
-          distinctio quasi voluptatem voluptate? Praesentium quidem excepturi
-          consequatur assumenda vel consequuntur suscipit cum, adipisci iste
-          exercitationem recusandae molestias sed ipsam repellat quibusdam ad.
-          Voluptatum culpa temporibus veritatis iste magnam ipsum! Qui magnam
-          vitae nemo? Iure nesciunt laboriosam totam error doloribus nemo nulla
-          porro deleniti blanditiis dolore quam, ullam, reprehenderit quod, quae
-          nostrum voluptas praesentium! Similique repudiandae sunt quod!
-          Possimus, quo dignissimos! Nesciunt itaque magni numquam? Quidem
-          quisquam dolore tempora! Similique, unde iste at eligendi recusandae
-          ea ipsum numquam voluptates vel hic quam quia possimus sequi,
-          assumenda vero autem? Optio, veritatis obcaecati blanditiis laudantium
-          harum culpa voluptatibus ad, nisi assumenda ab voluptates quae nihil
-          iste tempora ipsam consectetur esse laborum in reiciendis minima.
-          Recusandae modi impedit quis ab! Odit adipisci pariatur laudantium cum
-          quis ab temporibus expedita vel totam atque magni, maxime nemo libero
-          quos assumenda minus, eligendi quidem cumque, ullam repellat doloribus
-          placeat dolore deserunt amet? Quas, culpa iure nemo quia
-          exercitationem nesciunt corrupti vitae quos reiciendis magnam autem
-          nihil, iste quo. Dolorum quaerat reprehenderit provident, numquam
-          architecto perspiciatis non? Atque possimus eligendi illo totam fugiat
-          culpa ratione tenetur fuga, quia quam iusto, nihil repellat! Numquam
-          hic et doloremque omnis maxime tenetur necessitatibus voluptates
-          quibusdam quae, sed rem mollitia vel eligendi autem at ducimus
-          excepturi ipsum eius. Accusantium ullam explicabo ab mollitia id
-          debitis perspiciatis.
-        </p>
+        <p style="text-align: justify">{{.Project.Description}}</p>
       </div>
     </div>
     <!-- Detail Project End -->

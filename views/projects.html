@@ -77,7 +77,14 @@
         <span style="color: #83b735">My</span> Projects
       </h2>
 
+      <!-- Add Project Button -->
+      <div class="mb-4 text-end">
+        <a href="/form-add-project" class="btn card-btn">Add Project</a>
+      </div>
+
+      <!-- List Projects -->
       <div class="list-project" id="contents">
+        {{range $index, $data := .Projects}}
         <!-- Project 1 -->
         <div class="list-project-detail">
           <div class="card" style="width: 18rem">
@@ -89,17 +96,19 @@
             />
             <div class="card-body">
               <a
-                href="detail-project"
+                href="detail-project/{{$index}}"
                 style="
                   font-size: 22px;
                   font-weight: 550;
                   text-decoration: none;
                   color: #000;
                 "
-                >Mobile Apps 2023</a
+                >{{$data.ProjectName}}</a
               >
 
-              <p style="margin: 0">2 Januari 2023 | Seeus</p>
+              <p style="margin: 0">
+                {{$data.PostDate}} | Seeus | Index {{$index}}
+              </p>
               <p
                 style="
                   margin: 0;
@@ -108,14 +117,14 @@
                   color: gray;
                 "
               >
-                A month ago
+                {{$data.DistanceTime}}
               </p>
               <p class="card-text" style="font-size: 14px">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                {{$data.Description}}
               </p>
               <div class="card-skill">
-                <i class="bx bxl-html5 mb-3" style="font-size: 32px"></i>
+                {{$data.Javascript}} {{$data.ReactJS}} {{$data.NodeJS}}
+                {{$data.CSS3}}
               </div>
               <div class="card-button d-flex justify-content-between">
                 <a
@@ -124,113 +133,24 @@
                   style="flex: 50%; margin-right: 10px; font-size: 16px"
                   >Edit</a
                 >
-                <a href="#" class="btn card-btn" style="flex: 50%">Delete</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="list-project-detail">
-          <div class="card" style="width: 18rem">
-            <img
-              src="public/images/post-2.jpg"
-              class="card-img-top"
-              alt="project-image"
-              style="object-fit: cover; height: 190px"
-            />
-            <div class="card-body">
-              <a
-                href="detail-project"
-                style="
-                  font-size: 22px;
-                  font-weight: 550;
-                  text-decoration: none;
-                  color: #000;
-                "
-                >Mobile Apps 2023</a
-              >
-              <p style="margin: 0">2 Januari 2023 | Seeus</p>
-              <p
-                style="
-                  margin: 0;
-                  margin-bottom: 10px;
-                  font-size: 12px;
-                  color: gray;
-                "
-              >
-                A month ago
-              </p>
-              <p class="card-text" style="font-size: 14px">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <div class="card-skill">
-                <i class="bx bxl-html5 mb-3" style="font-size: 32px"></i>
-              </div>
-              <div class="card-button d-flex justify-content-between">
-                <a
-                  href="#"
-                  class="btn card-btn"
-                  style="flex: 50%; margin-right: 10px"
-                  >Edit</a
+                <form
+                  class="card-btn"
+                  style="
+                    flex: 50%;
+                    text-align: center;
+                    width: 100%;
+                    border-radius: 6px;
+                  "
+                  action="/project-delete/{{$index}}"
+                  method="POST"
                 >
-                <a href="#" class="btn card-btn" style="flex: 50%">Delete</a>
+                  <input type="submit" class="btn card-btn" value="Delete" />
+                </form>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Project 3 -->
-        <div class="list-project-detail">
-          <div class="card" style="width: 18rem">
-            <img
-              src="public/images/post-4.jpg"
-              class="card-img-top"
-              alt="project-image"
-              style="object-fit: cover; height: 190px"
-            />
-            <div class="card-body">
-              <a
-                href="detail-project"
-                style="
-                  font-size: 22px;
-                  font-weight: 550;
-                  text-decoration: none;
-                  color: #000;
-                "
-                >Mobile Apps 2023</a
-              >
-              <p style="margin: 0">2 Januari 2023 | Seeus</p>
-              <p
-                style="
-                  margin: 0;
-                  margin-bottom: 10px;
-                  font-size: 12px;
-                  color: gray;
-                "
-              >
-                A month ago
-              </p>
-              <p class="card-text" style="font-size: 14px">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <div class="card-skill">
-                <i class="bx bxl-html5 mb-3" style="font-size: 32px"></i>
-              </div>
-              <div class="card-button d-flex justify-content-between">
-                <a
-                  href="#"
-                  class="btn card-btn"
-                  style="flex: 50%; margin-right: 10px"
-                  >Edit</a
-                >
-                <a href="#" class="btn card-btn" style="flex: 50%">Delete</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        {{end}}
       </div>
     </div>
     <!-- My Project End -->

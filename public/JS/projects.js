@@ -145,6 +145,7 @@ function renderCard() {
                 margin-bottom: 10px;
                 font-size: 12px;
                 color: gray;
+                name: distanceTime;
                 "
         >
         ${distanceTime}
