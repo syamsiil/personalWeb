@@ -96,7 +96,7 @@
             />
             <div class="card-body">
               <a
-                href="detail-project/{{$index}}"
+                href="detail-project/{{$data.ID}}"
                 style="
                   font-size: 22px;
                   font-weight: 550;
@@ -107,7 +107,7 @@
               >
 
               <p style="margin: 0">
-                {{$data.PostDate}} | Seeus | Index {{$index}}
+                {{$data.FormatDate}} | Seeus | ID {{$data.ID}}
               </p>
               <p
                 style="
@@ -141,7 +141,7 @@
                     width: 100%;
                     border-radius: 6px;
                   "
-                  action="/project-delete/{{$index}}"
+                  action="/project-delete/{{$data.ID}}"
                   method="POST"
                 >
                   <input type="submit" class="btn card-btn" value="Delete" />
@@ -162,7 +162,7 @@
     <!-- Footer End -->
 
     <!-- Script To JS -->
-    <script src="public/JS/project.js"></script>
+    <!-- <script src="public/JS/project.js"></script> -->
 
     <!-- Script Bootstrap -->
     <script

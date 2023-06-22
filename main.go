@@ -1,9 +1,11 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"html/template"
 	"net/http"
+	"personalWeb/connection"
 	"strconv"
 	"time"
 
@@ -13,17 +15,20 @@ import (
 // nama dari struct nya adalah project
 // yang membangun dari object/properties
 type Project struct  {
-	Id 				int
+	ID 				int
 	ProjectName 	string
 	StartDate 		string
 	EndDate 		string
 	Description 	string
 	DistanceTime	string
-	PostDate 		string
+	PostDate 		time.Time
 	Javascript		bool
 	ReactJS			bool
 	NodeJS			bool
 	CSS3			bool
+	Image			string
+	Author			string
+	FormatDate		string
 }
 
 // Data - data yang ditampung, yang kemudian data yang diisi harus sesuai dengan tipe data yang telah dibangun pada struct 
@@ -34,7 +39,6 @@ var dataProject = [] Project{
 		EndDate: 		"2023-06-06",
 		Description: 	"Description",
 		DistanceTime: 	"1 month",
-		PostDate: 		"2023 06 30",
 		Javascript:     true,
 		ReactJS:    	true,
 		NodeJS:			true,
@@ -46,7 +50,6 @@ var dataProject = [] Project{
 		EndDate: 		"2023-06-06",
 		Description: 	"Description 2",
 		DistanceTime: 	"1 month",
-		PostDate: 		"2023 06 30",
 		Javascript:     true,
 		ReactJS:    	true,
 		NodeJS:			true,
@@ -55,6 +58,8 @@ var dataProject = [] Project{
 } 
 
 func main() {
+	connection.DatabaseConnect()
+
 	e := echo.New()
 
 	// e = echo package
@@ -122,14 +127,39 @@ func testimonials(c echo.Context)error{
 }
 
 func projects(c echo.Context)error{
+	data, errtest := connection.Conn.Query(context.Background(), "SELECT id, project_name, description, 'image', post_date FROM tb_project")
+
+	var result []Project
+	for data.Next() {
+		var each = Project{}
+
+		err := data.Scan(&each.ID, &each.ProjectName, &each.Description, &each.Image, &each.PostDate)
+		if err != nil {
+			fmt.Println(err.Error())
+			return c.JSON(http.StatusInternalServerError, map[string]string{"Message": err.Error()})
+		}
+
+		each.FormatDate = each.PostDate.Format("2 January 2006")
+		each.Author = "Abel Dustin"
+
+		result = append(result, each)
+	}
+
+	projects := map[string]interface{}{
+		"Projects": result,
+	}
+
+	fmt.Println(result)
+
+
 	var tmpl, err = template.ParseFiles("views/projects.html")
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message":err.Error()})
 	}
 
-	projects := map[string]interface{}{
-		"Projects" : dataProject,
+	if errtest != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message":errtest.Error()})
 	}
 
 	// nil penampung data yang dikirimkan
@@ -139,43 +169,24 @@ func projects(c echo.Context)error{
 func detailProject(c echo.Context)error{
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	// data := map[string]interface{}{
-	// 	"Id":      id,
-	// 	"Title":   "Pasar Coding di Indonesia Dinilai Masih Menjanjikan",
-	// 	"Content": "REPUBLIKA.CO.ID, JAKARTA -- Ketimpangan sumber daya manusia (SDM) di sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan penelitian Manpower Group, ketimpangan SDM global, termasuk Indonesia, meningkat dua kali lipat dalam satu dekade terakhir. Khusus di sektor teknologi yang berkembang pesat, menurut Kemendikbudristek, Indonesia kekurangan sembilan juta pekerja teknologi hingga tahun 2030. Hal itu berarti Indonesia memerlukan sekitar 600 ribu SDM digital yang memasuki pasar setiap tahunnya.",
-	// }
-
 	var ProjectDetail = Project{}
 
-	// for melakukan perulangan
-	// i = penampung index dari range
-	// data = penampung data dari range
-	// range = jarakan data/banyaknya data
-	// dataBlog = sumber data yang ingin dilakukan perulangan
-	for i, data := range dataProject{
-		if id == i {
-			ProjectDetail = Project{
-				ProjectName:    data.ProjectName,
-				StartDate:		data.StartDate,
-				EndDate: 		data.EndDate,
-				Description: 	data.Description,
-				DistanceTime: 	data.DistanceTime,
-				PostDate: 		data.PostDate,
-				Javascript:     data.Javascript,
-				ReactJS:    	data.ReactJS,
-				NodeJS:			data.NodeJS,
-				CSS3: 			data.CSS3,
-			}
-		}
+	err := connection.Conn.QueryRow(context.Background(), "SELECT id, description, image, FROM tb_project WHERE id=$1",id).Scan(&ProjectDetail.ID,&ProjectDetail.Description, &ProjectDetail.Image)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
+
+	ProjectDetail.Author = "Seeus"
+	ProjectDetail.FormatDate = ProjectDetail.PostDate.Format("2 January 2006")
 
 	data := map[string]interface{}{
 		"Project": ProjectDetail,
 	}
 
-	var tmpl, err = template.ParseFiles("views/detail-project.html")
+	var tmpl, errTemplate = template.ParseFiles("views/detail-project.html")
 
-	if err != nil {
+	if errTemplate != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 	}
 
@@ -238,7 +249,7 @@ func addProject(c echo.Context)error{
 	endDate := 		c.FormValue("input-enddate")
 	description := 	c.FormValue("input-description")
 	distanceTime :=	calculateDuration(startDate, endDate)
-	postDate:= 		time.Now().String()
+	
 	var javascript bool
 	if c.FormValue("javascript") == "yes" {
 		javascript = true
@@ -262,7 +273,6 @@ func addProject(c echo.Context)error{
 		EndDate: 		endDate,
 		Description: 	description,
 		DistanceTime: 	distanceTime,
-		PostDate: 		postDate,
 		Javascript:     javascript,
 		ReactJS:    	reactJs,
 		NodeJS:			nodeJs,
